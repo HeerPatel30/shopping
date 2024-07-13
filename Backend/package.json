@@ -1,0 +1,23 @@
+{
+  "name": "app.js",
+  "version": "1.0.0",
+  "description": "this is shopping ecommerce wesbite ",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "server": "node server.js"
+  },
+  "keywords": [
+    "ecommerce"
+  ],
+  "author": "Heer Patel , Smit Patel , Gurupreet Singh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "nodemon": "^3.1.4"
+  }
+}
