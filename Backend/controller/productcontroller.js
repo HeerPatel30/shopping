@@ -1,7 +1,7 @@
 const asyncerror = require("../middleware/asyncerror");
 const Product = require("../models/product");
+const ApiFeatures = require("../utils/apifeatures");
 const Errorhandler = require("../utils/errorhandler");
-
 
 
 // create product admin 
@@ -34,17 +34,23 @@ const singleproduct = asyncerror(async(req,res,next)=>{
 
 
 // fetching the products 
-const getallproducts=asyncerror(async(req,res)=>{
-    
-    // finding the data 
-    const product = await Product.find()
+const getallproducts = asyncerror(async (req, res) => {
+   // pagination 
+     const resultPerPage = 5;
+    //  counting the product
+    const productCount = await Product.countDocuments();
+    // Extracting the API feature
+    const apiFeature = new ApiFeatures(Product.find(), req.query).search().filter().pagination(resultPerPage);
+
+    // Finding the data
+    const products = await apiFeature.query;
 
     res.status(201).json({
-        success:true,
-        products:product
-    })
-} )
-
+        success: true,
+        products,
+        productCount,
+    });
+});
 // updating the poduct Admin 
 const updateproduct= asyncerror(async(req,res,next)=>{
     
